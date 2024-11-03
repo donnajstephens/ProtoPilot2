@@ -1,9 +1,10 @@
 name: Workflow
 
 on:
-  schedule:
-    - cron: '0 22 * * *'
+  # schedule:
+    # - cron: '0 0 * * *'
   workflow_dispatch:
+  push:
 
 jobs:
   build:
@@ -42,7 +43,7 @@ jobs:
 
       - name: Build and run Docker
         if: matrix.os != 'macos-14'
-        timeout-minutes: 240
+        timeout-minutes: 270
         continue-on-error: false
         run: |
           cd ${{ secrets.GIT_NAME }}
